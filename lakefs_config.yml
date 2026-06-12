@@ -1,0 +1,21 @@
+# LakeFS repository configuration for the Spotify ML pipeline.
+# This file is read by the pipeline at startup.
+# In production, secrets are injected via environment variables.
+
+server:
+  endpoint_url: "http://localhost:8000"
+
+repository: "spotify-pipeline"
+
+branches:
+  # Data flows: raw → staging → main
+  # Feature engineering commits go to staging for review.
+  # After validation, staging is merged into main.
+  raw: "raw"
+  staging: "staging"
+  production: "main"
+
+paths:
+  raw_data: "data/raw/"
+  processed_data: "data/processed/"
+  models: "models/"
